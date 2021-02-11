@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-var express = require('../..');
+var express = require('../../lib/express.js');
 var hash = require('pbkdf2-password')()
 var path = require('path');
 var session = require('express-session');
@@ -39,21 +39,13 @@ app.use(function(req, res, next){
 // dummy database
 
 var users = {
-  tj: { name: 'tj' }
-  auths: { name: 'eureka'}
+  eureka: { name: 'eureka' }
 };
 
 // when you create a user, generate a salt
 // and hash the password ('foobar' is the pass here)
 
-hash({ password: 'foobar' }, function (err, pass, salt, hash) {
-  if (err) throw err;
-  // store the salt & hash in the "db"
-  users.tj.salt = salt;
-  users.tj.hash = hash;
-});
-
-hash({ password: '3rr0r404' }, function (err, pass, salt, hash) {
+hash({ password: '3xpr3ssJS' }, function (err, pass, salt, hash) {
   if (err) throw err;
   // store the salt & hash in the "db"
   users.eureka.salt = salt;
@@ -92,7 +84,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/restricted', restrict, function(req, res){
-  res.send('Wahoo! You found the flag! (or did you) <a href="/f-lag">logout</a>');
+  res.send('Wahoo! Almost there. Or are you? <a href="/f-lag">logout</a>');
 });
 
 app.get('/logout', function(req, res){
@@ -103,7 +95,7 @@ app.get('/logout', function(req, res){
   });
 });
 
-app.get('/f-lag', (req, res) => {
+app.get('/f-lag', restrict, function(req, res){
   res.send('eTB1Y2x1dHRlcmYwdW5kY2x1dHRlcjF0Y2x1dHRlcmRtY2x1dHRlcm9yYW5nZWNsdXR0ZXJ0aGVjbHV0dGVyZm9sbG93aW5nY2x1dHRlcnRleHRjbHV0dGVye2g0Y2szcj8xdGgxbmtuMHR9')
 })
 
@@ -122,14 +114,13 @@ app.post('/login', function(req, res){
         // or in this case the entire user object
         req.session.user = user;
         req.session.success = 'Authenticated as ' + user.name
-          + ' click to <a href="/logout">logout</a>. '
           + ' You may now access <a href="/restricted">/restricted</a>.';
         res.redirect('back');
       });
     } else {
       req.session.error = 'Authentication failed, please check your '
         + ' username and password.'
-        + ' (use "tj" and "foobar")';
+        + ' keep looking!';
       res.redirect('/login');
     }
   });
@@ -138,5 +129,5 @@ app.post('/login', function(req, res){
 /* istanbul ignore next */
 if (!module.parent) {
   app.listen(3000);
-  console.log('CTF started on port 3000');
+  console.log('Express started on port 3000');
 }
