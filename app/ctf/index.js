@@ -99,6 +99,11 @@ app.get('/f-lag', restrict, function(req, res){
   res.send('eTB1Y2x1dHRlcmYwdW5kY2x1dHRlcjF0Y2x1dHRlcmRtY2x1dHRlcm9yYW5nZWNsdXR0ZXJ0aGVjbHV0dGVyZm9sbG93aW5nY2x1dHRlcnRleHRjbHV0dGVye2g0Y2szcj8xdGgxbmtuMHR9')
 })
 
+app.get('/answers'), function(req, res){
+	res.send('lol you think? go back home. <a href="/f-lag">lol</a>');
+}
+
+
 app.get('/login', function(req, res){
   res.render('login');
 });
