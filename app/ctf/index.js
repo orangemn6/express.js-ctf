@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(session({
   resave: false, // don't save session if unmodified
   saveUninitialized: false, // don't create session until something stored
-  secret: 'shhhh, very secret'
+  secret: 'very secret'
 }));
 
 // Session-persisted message middleware
@@ -101,6 +101,10 @@ app.get('/f-lag', restrict, function(req, res){
 
 app.get('/answers'), function(req, res){
 	res.send('lol you think it is that easy? go back home. <a href="/f-lag">lol</a>');
+}
+
+app.get('/wp-admin'), function(req, res){
+	res.send('orangemn6/express.js-ctf (open source) <a href="/f-lag">lol</a>');
 }
 
 
