@@ -96,11 +96,11 @@ app.get('/logout', function(req, res){
 });
 
 app.get('/f-lag', restrict, function(req, res){
-  res.send('eTB1Y2x1dHRlcmYwdW5kY2x1dHRlcjF0Y2x1dHRlcmRtY2x1dHRlcm9yYW5nZWNsdXR0ZXJ0aGVjbHV0dGVyZm9sbG93aW5nY2x1dHRlcnRleHRjbHV0dGVye2g0Y2szcj8xdGgxbmtuMHR9')
+  res.send('WW91IGRpZCBpdCEgdGhlIGZsYWcgaXMgYXMgZm9sbG93aW5nOiB7MGhfeTB1XzFoaW5rX3kwdV9jNG5fNDRjaz99')
 })
 
 app.get('/answers'), function(req, res){
-	res.send('lol you think? go back home. <a href="/f-lag">lol</a>');
+	res.send('lol you think it is that easy? go back home. <a href="/f-lag">lol</a>');
 }
 
 
